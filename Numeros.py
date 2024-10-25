@@ -12,6 +12,7 @@ def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
     numeros_digitados = []
     
     for numeros in palabras:
+        total = 0
         suma_temporal = 0
         es_negativo = False
 
@@ -19,14 +20,20 @@ def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
             if num in numeros_palabras:
                 suma_temporal += numeros_palabras[num]
             elif num in escalas_palabras:
-                suma_temporal *= escalas_palabras[num]
+                if num == "hundred":
+                    suma_temporal *= escalas_palabras[num]
+                else:
+                    total += suma_temporal * escalas_palabras[num]
+                    suma_temporal = 0
             elif num == "negative":
                 es_negativo = True
         
+        total += suma_temporal
+
         if es_negativo == True:
-            suma_temporal *= -1
+            total *= -1
         
-        numeros_digitados.append(suma_temporal)
+        numeros_digitados.append(total)
     
     return numeros_digitados           
 

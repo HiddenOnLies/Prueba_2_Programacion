@@ -2,3 +2,7 @@ six
 negative seven hundred twenty nine 
 one million one hundred one 
 five hundred twenty two 
+negative nine hundred ninety nine million nine hundred ninety nine thousand nine hundred ninety nine
+negative one thousand
+negative one hundred
+nine million nine hundred ninety nine thousand nine hundred ninety nine
