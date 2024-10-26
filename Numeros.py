@@ -45,7 +45,7 @@ def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
                 es_negativo = True  # Marca en caso de que nos indique que el numero sera negativo.
         total += suma_temporal  
         if es_negativo == True: 
-            total *= -1  # Transformamos el numero a negativo en caso de que se cumpla la condicion
+            total *= -1  # Transformamos el numero a negativo en caso de que se cumpla la condicion.
         numeros_digitados.append(total)  
     return numeros_digitados  
 
