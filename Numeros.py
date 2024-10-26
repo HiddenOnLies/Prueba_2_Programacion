@@ -2,13 +2,13 @@
 
 
 # Función para abrir el archivo y almacenar su contenido en una lista.
-def abrir_archivo(nombre_entrada):
+def abrir_archivo(nombre_archivo):
     salida = [] 
-    archivo = open(nombre_entrada, "r") 
+    archivo = open(nombre_archivo, "r") 
     contenido = archivo.readlines()  
     for lineas in contenido:  
         palabras = lineas.strip("").split() 
-        if len(palabras) >= 1:  # Condición que solamente almacena las lineas que contengan una o mas palabras.
+        if len(palabras) >= 1:  # Condicion para solamente almacenar las lineas que contengan una o mas palabras.
             salida.append(palabras) 
     archivo.close()  
     return salida 
@@ -25,14 +25,14 @@ def variables_numeros():
     return numeros, escalas
         
 
-# Función que convierte los elementos de una lista de palabras a su equivalente numérico del diccionario.
+# Función que convierte los elementos de una lista de palabras a su equivalente numerico.
 def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
     numeros_digitados = []  
     for numeros in palabras:
         total = 0  
         suma_temporal = 0  
         es_negativo = False  
-        for num in numeros: # Sumar los números que se encuentran en el diccionario "numeros"
+        for num in numeros: # Sumar los numeros que se encuentran en el diccionario "numeros"
             if num in numeros_palabras:  
                 suma_temporal += numeros_palabras[num]  # Suma valores contenidos en el diccionario "numeros".
             elif num in escalas_palabras: 
@@ -40,33 +40,29 @@ def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
                     suma_temporal *= escalas_palabras[num]  # Multiplica por la escala de cien.
                 else:  
                     total += suma_temporal * escalas_palabras[num]  # Multiplica por escalas de mil o millon.
-                    suma_temporal = 0  # Reiniciamos la variable para evitar errores de calculo entre las escalas de mil y millón.
+                    suma_temporal = 0  # Reiniciamos la variable para evitar errores de calculo entre las escalas de mil y millon
             elif num == "negative":  
-                es_negativo = True  # Marca en caso de que nos indique que el número sera negativo.
+                es_negativo = True  # Marca en caso de que nos indique que el numero sera negativo.
         total += suma_temporal  
         if es_negativo == True: 
-            total *= -1  # Transformamos el número a negativo en caso de que se cumpla la condición.
+            total *= -1  # Transformamos el numero a negativo en caso de que se cumpla la condicion.
         numeros_digitados.append(total)  
     return numeros_digitados  
 
 
-# Función para generar un archivo de salida con la lista que contiene los números convertidos a enteros.
+# Función para generar un archivo de salida con la lista que contiene los numeros convertidos a enteros.
 def generar_salida(nombre_salida, numeros):
     archivo = open(nombre_salida, "w")  
     for num in numeros:
-        archivo.write(str(num) + "\n") # Escribimos cada número en una nueva línea.
+        archivo.write(str(num) + "\n") # Escribimos cada numero en una nueva linea.
     archivo.close()           
 
 
 if __name__ == "__main__":
-    # Nombres de los archivos de entrada y salida.
-    nombre_entrada = "en_palabras.txt"
-    nombre_salida = "en_numeros.txt"
-    # Obtenemos los diccionarios de números y escalas.
-    numeros_palabras, escalas_palabras = variables_numeros()
-    # Procesamos el archivo de entrada y convertimos las palabras a números.
-    palabras = abrir_archivo(nombre_entrada)
+    nombre_archivo = "en_palabras.txt"  # Nombre del archivo de entrada con numeros en palabras.
+    nombre_salida = "en_numeros.txt"  # Nombre del archivo de salida con los numeros convertidos. 
+    numeros_palabras, escalas_palabras = variables_numeros() # Obtener los diccionarios
+    palabras = abrir_archivo(nombre_archivo)
     numeros = identificar_numeros(palabras, numeros_palabras, escalas_palabras)
-    # Generamos el archivo de salida con los números convertidos.
-    generar_salida(nombre_salida, numeros)  # Generamos el archivo de salida con los números convertidos a enteros.
+    generar_salida(nombre_salida, numeros)  # Generamos el archivo de salida con los numeros convertidos a enteros.
     
