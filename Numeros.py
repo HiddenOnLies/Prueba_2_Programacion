@@ -7,7 +7,7 @@ def abrir_archivo(nombre_entrada):
     archivo = open(nombre_entrada, "r") 
     contenido = archivo.readlines()  
     for lineas in contenido:  
-        palabras = lineas.strip("").split() # Recorremos las lineas de las listas, separamos y eliminamos posibles espacios en blanco.
+        palabras = lineas.strip("").split()  # Recorremos las lineas de las listas, separamos y eliminamos posibles espacios en blanco.
         if len(palabras) >= 1:  # Condición que solamente almacena las lineas que contengan una o mas palabras.
             salida.append(palabras) 
     archivo.close()  
@@ -56,7 +56,7 @@ def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
 def generar_salida(nombre_salida, numeros):
     archivo = open(nombre_salida, "w")  
     for num in numeros:
-        archivo.write(str(num) + "\n") # Escribimos cada número en una nueva línea.
+        archivo.write(str(num) + "\n")  # Escribimos cada número en una nueva línea.
     archivo.close()           
 
 
