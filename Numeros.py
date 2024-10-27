@@ -28,13 +28,13 @@ def variables_numeros():
 # Función que convierte los elementos de una lista de palabras a su equivalente numérico del diccionario.
 def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
     numeros_digitados = []
-    # Recorremos las palabras por sublistas.
+    # Recorremos cada sublista de palabras.
     for numeros in palabras:
         total = 0  
         suma_temporal = 0  
         es_negativo = False  
         for num in numeros:
-            # Buscamos palabras que esten dentro de nuestro diccionario para asociarlas a su valor numérico
+            # Buscamos palabras que esten dentro de nuestro diccionario para asociarlas a su valor numérico.
             if num in numeros_palabras: 
                 suma_temporal += numeros_palabras[num]  # Suma valores contenidos en el diccionario "numeros".
             elif num in escalas_palabras: 
