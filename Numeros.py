@@ -7,7 +7,7 @@ def abrir_archivo(nombre_entrada):
     archivo = open(nombre_entrada, "r") 
     contenido = archivo.readlines()  
     for lineas in contenido:  
-        palabras = lineas.strip("").split() 
+        palabras = lineas.strip("").split() # Recorremos las lineas de las listas, separamos y eliminamos posibles espacios en blanco.
         if len(palabras) >= 1:  # Condición que solamente almacena las lineas que contengan una o mas palabras.
             salida.append(palabras) 
     archivo.close()  
@@ -27,21 +27,23 @@ def variables_numeros():
 
 # Función que convierte los elementos de una lista de palabras a su equivalente numérico del diccionario.
 def identificar_numeros(palabras, numeros_palabras, escalas_palabras):
-    numeros_digitados = []  
+    numeros_digitados = []
+    # Recorremos las palabras por sublistas.
     for numeros in palabras:
         total = 0  
         suma_temporal = 0  
         es_negativo = False  
         for num in numeros:
-            if num in numeros_palabras:  
+            # Buscamos palabras que esten dentro de nuestro diccionario para asociarlas a su valor numérico
+            if num in numeros_palabras: 
                 suma_temporal += numeros_palabras[num]  # Suma valores contenidos en el diccionario "numeros".
             elif num in escalas_palabras: 
                 if num == "hundred":  
                     suma_temporal *= escalas_palabras[num]  # Multiplica por la escala de cien.
                 else:  
-                    total += suma_temporal * escalas_palabras[num]  # Multiplica por escalas de mil o millon.
+                    total += suma_temporal * escalas_palabras[num]  # Multiplica por escalas de mil o millón.
                     suma_temporal = 0  # Reiniciamos la variable para evitar errores de calculo entre las escalas de mil y millón.
-            elif num == "negative":  
+            elif num == "negative":
                 es_negativo = True  # Marca en caso de que nos indique que el número sera negativo.
         total += suma_temporal  
         if es_negativo == True: 
